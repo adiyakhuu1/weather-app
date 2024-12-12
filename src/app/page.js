@@ -37,8 +37,9 @@ export default function Home() {
           />
         </div>
 
-        <WhiteCircle size="140px" />
-        <WhiteCircle size="340px" />
+        <WhiteCircle size="w-[340px] h-[340px]" />
+        <WhiteCircle size="w-[140px] h-[140px]" color="bg-white" logo={true} />
+        {/* <WhiteCircle size="340px" /> */}
       </div>
     );
   };

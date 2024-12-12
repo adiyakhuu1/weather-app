@@ -3,7 +3,7 @@ import { SearchInput } from "./SearchInput";
 export const Card = ({ color, textColor, to, from, temp, status }) => {
   return (
     <div
-      className={`w-[414px] h-[828px] bg-gradient-to-b ${from} ${to} justify-center absolute top-[230px] left-[350px] grid p-4 rounded-3xl shadow-2xl`}
+      className={`w-[414px] h-[828px] bg-gradient-to-b ${from} ${to} justify-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid p-4 rounded-3xl shadow-2xl`}
     >
       {/* 1 */}
       <div className="flex w-[auto] space-x-28 justify-center  row-start-1 row-end-2 col-start-1 col-end-4">
