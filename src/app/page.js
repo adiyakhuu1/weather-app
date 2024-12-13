@@ -1,15 +1,28 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SearchInput } from "./component/SearchInput";
 import { Card } from "./component/card";
 import { WhiteCircle } from "./component/WhiteCircle";
 // import "./App.css";
 
 export default function Home() {
-  // useEffect(() => {
-  //   fetch();
-  // });
+  const [weatherData, setWeatherData] = useState("");
+  useEffect(() => {
+    try {
+      const fetchData = async () => {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/3.0/onecall?lat=47.9077&lon=106.8832&appid=4c6110eacb4190cc13310d65804a9bf3`
+        );
+        const data = await response.json();
+        setWeatherData(data);
+        console.log(data);
+      };
+      fetchData();
+    } catch (e) {
+      console.error("aldaa-----------------", e);
+    }
+  }, []);
   const Main = () => {
     return (
       <div className="flex w-[auto] h-[1200px] justify-content-center relative">
@@ -18,16 +31,18 @@ export default function Home() {
             <SearchInput />
           </div>
           <Card
+            theRegion={weatherData.timezone}
             color="white"
             from="from-slate-200"
             to="to-white"
-            temp="26"
+            temp={Math.floor(weatherData.current.temp - 273.15)}
             status="./img/sunny.png"
           />
         </div>
 
         <div className="w-[50%] h-[1200px] bg-[#0f141e] relative">
           <Card
+            theRegion={weatherData.timezone}
             color="black"
             from="from-[#1f2937]"
             to="to-[#111827]"
