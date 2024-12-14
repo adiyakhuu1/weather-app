@@ -11,6 +11,8 @@ export default function Home() {
     const [weatherData, setWeatherData] = useState({});
     const [search, setSearch] = useState("");
     const [city, setCity] = useState("ulaanbaatar");
+    const [statusDay, setStatusDay] = useState(null);
+    const [statusNight, setStatusNight] = useState(null);
 
     const API_key = `6f9cc5eb8a37493783a72448241312`;
     useEffect(() => {
@@ -20,8 +22,10 @@ export default function Home() {
         .then((response) => response.json())
         .then((data) => {
           setWeatherData(data);
-          console.log(data);
+          changeStatusDay(data);
+          changeStatusNight(data);
         });
+
       // try {
       //   const fetchData = async () => {
       //     const response = await fetch(
@@ -35,7 +39,7 @@ export default function Home() {
       // } catch (e) {
       //   console.error("aldaa-----------------", e);
       // }
-    }, [city]);
+    }, [city, statusDay, statusNight]);
 
     const onChangeText = (event) => {
       setSearch(event.target.value);
@@ -43,9 +47,67 @@ export default function Home() {
     const onPressEnter = (e) => {
       if (e.code === "Enter") {
         setCity(search);
+        changeStatusDay();
+        changeStatusNight();
       }
     };
-    console.log("the search:", search, "the city:", city);
+    const changeStatusDay = (weatherData) => {
+      console.log(weatherData?.current?.condition?.text);
+      if (
+        weatherData?.current?.condition?.text
+          .toLowerCase()
+          .includes("overcast") ||
+        weatherData?.current?.condition?.text.toLowerCase().includes("cloud")
+      ) {
+        setStatusDay("./img/cloudy.png");
+        console.log("it's cloudy");
+      } else if (
+        weatherData?.current?.condition?.text
+          .toLowerCase()
+          .includes("shower") ||
+        weatherData?.current?.condition?.text.toLowerCase().includes("rain")
+      ) {
+        setStatusDay("./img/rain.png");
+        console.log("it's raining");
+      } else {
+        setStatusDay("./img/sunny.png");
+        console.log("it's sunny");
+      }
+    };
+    const changeStatusNight = (weatherData) => {
+      console.log(
+        weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
+      );
+      if (
+        weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
+          .toLowerCase()
+          .includes("mist") ||
+        weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
+          .toLowerCase()
+          .includes("cloud") ||
+        weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
+          .toLowerCase()
+          .includes("overcast")
+      ) {
+        setStatusNight("./img/moon-cloudy.png");
+        console.log("it's cloudy");
+      } else if (
+        weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
+          .toLowerCase()
+          .includes("shower") ||
+        weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
+          .toLowerCase()
+          .includes("rain")
+      ) {
+        setStatusNight("./img/moon-cloudy-rainy.png");
+        console.log("it's raining");
+      } else {
+        setStatusNight("./img/moon.png");
+        console.log("night has a clear sky");
+      }
+    };
+
+    // console.log("the search:", search, "the city:", city);
     return (
       <div className="flex w-[auto] h-[1200px] justify-content-center relative">
         <div className="w-[50%] h-[1200px] bg-white relative">
@@ -58,13 +120,14 @@ export default function Home() {
           </div>
           {weatherData && (
             <Card
-              date={weatherData?.forecast?.forecastday[0]?.date}
+              date={weatherData?.current?.last_updated}
               theRegion={weatherData?.location?.name}
               color="white"
               from="from-slate-200"
               to="to-white"
+              textColor="text-black"
               temp={weatherData?.forecast?.forecastday[0]?.day?.maxtemp_c}
-              status="./img/sunny.png"
+              status={statusDay}
               description={weatherData?.current?.condition?.text}
             />
           )}
@@ -73,16 +136,16 @@ export default function Home() {
         <div className="w-[50%] h-[1200px] bg-[#0f141e] relative">
           {weatherData && (
             <Card
-              date={weatherData?.forecast?.forecastday[0]?.date}
+              date={weatherData?.current?.last_updated}
               theRegion={weatherData?.location?.name}
               color="black"
               from="from-[#1f2937]"
               to="to-[#111827]"
               textColor="text-white"
               temp={weatherData?.forecast?.forecastday[0]?.day?.mintemp_c}
-              status="./img/moon.png"
+              status={statusNight}
               description={
-                weatherData?.forecast?.forecastday[0]?.day?.condition?.text
+                weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
               }
             />
           )}

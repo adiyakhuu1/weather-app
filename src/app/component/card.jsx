@@ -1,4 +1,8 @@
 import { SearchInput } from "./SearchInput";
+import { MdHome } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdFavoriteBorder } from "react-icons/md";
+import { IoMdPerson } from "react-icons/io";
 
 export const Card = ({
   textColor,
@@ -22,7 +26,7 @@ export const Card = ({
       </div>
       {/* -- */}
       <div
-        className={`text-center text-2xl row-start-7 row-end-8 col-start-3 col-end-9 ${textColor}`}>
+        className={`text-center text-2xl row-start-6 row-end-7 col-start-3 col-end-9 ${textColor}`}>
         {date}
       </div>
       {/* 2 */}
@@ -36,10 +40,20 @@ export const Card = ({
       </div>
       {/* -- */}
       {/* 4 */}
-      <div className="row-start-[20] row-end-28 col-start-2 col-end-6 p-5">
+      <div className="row-start-[22] row-end-28 col-start-2 col-end-8 p-5">
         <div className={`text-orange-500 text-2xl`}>{description}</div>
       </div>
       {/* -- */}
+      <div className="flex row-start-[23] row-end-24 col-start-2 col-end-8 p-5 w-[350px] justify-center gap-10">
+        {/* <img className={`${textColor} w-8`} src="./img/home.svg" />
+        <img className={`${textColor} w-8`} src="./img/localization.svg" />
+        <img className={`${textColor} w-8`} src="./img/fav.svg" />
+        <img className={`${textColor} w-8`} src="./img/person.svg" /> */}
+        <MdHome className="text-gray-500 text-2xl" />
+        <FaLocationDot className="text-gray-500 text-2xl" />
+        <MdFavoriteBorder className="text-gray-500 text-2xl" />
+        <IoMdPerson className="text-gray-500 text-2xl" />
+      </div>
     </div>
   );
 };
