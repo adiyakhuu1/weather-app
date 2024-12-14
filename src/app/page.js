@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SearchInput } from "./component/SearchInput";
 import { Card } from "./component/card";
 import { WhiteCircle } from "./component/WhiteCircle";
+import { CityList } from "./citySuggestion";
 // import "./App.css";
 
 export default function Home() {
@@ -117,6 +118,7 @@ export default function Home() {
               onChangeText={onChangeText}
               onPressEnter={onPressEnter}
             />
+            <CityList search={search} />
           </div>
           {weatherData && (
             <Card

@@ -3,6 +3,7 @@ import { MdHome } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
+import { CityList } from "../citySuggestion";
 
 export const Card = ({
   textColor,
