@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { SearchInput } from "./component/SearchInput";
 import { Card } from "./component/card";
 import { WhiteCircle } from "./component/WhiteCircle";
-import { CityList } from "./citySuggestion";
+import { CityList } from "./component/citySuggestion";
 // import "./App.css";
 
 export default function Home() {
@@ -25,6 +25,7 @@ export default function Home() {
           setWeatherData(data);
           changeStatusDay(data);
           changeStatusNight(data);
+          console.log(data);
         });
 
       // try {
@@ -123,7 +124,8 @@ export default function Home() {
           {weatherData && (
             <Card
               date={weatherData?.current?.last_updated}
-              theRegion={weatherData?.location?.name}
+              theCity={weatherData?.location?.name}
+              theCountry={weatherData?.location?.country}
               color="white"
               from="from-slate-200"
               to="to-white"
@@ -139,7 +141,8 @@ export default function Home() {
           {weatherData && (
             <Card
               date={weatherData?.current?.last_updated}
-              theRegion={weatherData?.location?.name}
+              theCity={weatherData?.location?.name}
+              theCountry={weatherData?.location?.country}
               color="black"
               from="from-[#1f2937]"
               to="to-[#111827]"
@@ -153,8 +156,16 @@ export default function Home() {
           )}
         </div>
 
-        <WhiteCircle size="w-[340px] h-[340px]" />
-        <WhiteCircle size="w-[140px] h-[140px]" color="bg-white" logo={true} />
+        <WhiteCircle
+          size="w-[340px] h-[340px]"
+          disappear={`hidden 2xl:block`}
+        />
+        <WhiteCircle
+          size="w-[140px] h-[140px]"
+          color="bg-white"
+          logo={true}
+          disappear={`hidden 2xl:block`}
+        />
         {/* <WhiteCircle size="340px" /> */}
       </div>
     );

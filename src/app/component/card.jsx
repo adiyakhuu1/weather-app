@@ -3,31 +3,38 @@ import { MdHome } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
-import { CityList } from "../citySuggestion";
+import { CityList } from "./citySuggestion";
 
 export const Card = ({
+  disappear,
   textColor,
   to,
   from,
   temp,
   status,
-  theRegion,
+  theCountry,
+  theCity,
   description,
   date,
 }) => {
   return (
     <div
-      className={`w-[414px] h-[828px] bg-gradient-to-b ${from} ${to} justify-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl`}>
+      className={`w-[414px] h-[828px] bg-gradient-to-b ${from} ${to} justify-center ${disappear} absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl`}
+    >
       {/* 1 */}
       <div className="flex w-[318px] space-x-28 justify-center  row-start-2 row-end-5 col-start-2 col-end-10 p-5">
-        <h1 className={`${textColor} font-extrabold text-2xl`}>{theRegion}</h1>
+        <div>
+          <h2 className={`${textColor} font-mediumt text-1xl`}>{theCountry}</h2>
+          <h1 className={`${textColor} font-extrabold text-2xl`}>{theCity}</h1>
+        </div>
         <span className={`material-symbols-outlined ${textColor} pt-3 pr-3`}>
           location_on
         </span>
       </div>
       {/* -- */}
       <div
-        className={`text-center text-2xl row-start-6 row-end-7 col-start-3 col-end-9 ${textColor}`}>
+        className={`text-center text-2xl row-start-6 row-end-7 col-start-3 col-end-9 ${textColor}`}
+      >
         {date}
       </div>
       {/* 2 */}
