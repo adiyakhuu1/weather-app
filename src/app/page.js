@@ -26,6 +26,7 @@ export default function Home() {
           changeStatusDay(data);
           changeStatusNight(data);
           console.log(data);
+          console.log(city);
         });
 
       // try {
@@ -119,7 +120,7 @@ export default function Home() {
               onChangeText={onChangeText}
               onPressEnter={onPressEnter}
             />
-            <CityList search={search} />
+            <CityList search={search} setCity={setCity} />
           </div>
           {weatherData && (
             <Card

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const CityList = ({ search }) => {
+export const CityList = ({ search, setCity }) => {
   const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
 
@@ -27,7 +27,7 @@ export const CityList = ({ search }) => {
   }, []);
 
   useEffect(() => {
-    console.log(search);
+    // console.log(search);
     if (search) {
       const filtered = cities.filter((city) =>
         city.toLowerCase().includes(search.toLowerCase())
@@ -37,12 +37,21 @@ export const CityList = ({ search }) => {
       setFilteredCities([]);
     }
   }, [search, cities]);
+  // const changeSearch = (city) => {
+  //   setSearch(city);
+  // };
 
   return (
     <div className="searchin">
-      {filteredCities.map((city) => (
-        <div>
-          <button>{city}</button>
+      {filteredCities.map((city, index) => (
+        <div key={index}>
+          <button
+            onClick={(e) => {
+              setCity(city);
+            }}
+          >
+            {city}
+          </button>
         </div>
       ))}
     </div>
