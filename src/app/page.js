@@ -15,8 +15,29 @@ export default function Home() {
     const [city, setCity] = useState("ulaanbaatar");
     const [statusDay, setStatusDay] = useState(null);
     const [statusNight, setStatusNight] = useState(null);
+    const [count, setCount] = useState(false);
 
     const API_key = `6f9cc5eb8a37493783a72448241312`;
+    // counting +
+    useEffect(() => {
+      const interval = setInterval(() => {
+        console.log(count);
+      }, 1000);
+
+      clearInterval(interval);
+    }, [count]);
+    // counting -
+    // auto refresh +
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCount(!count);
+      }, 10000);
+      clearInterval(interval);
+    }, [count]);
+    // auto refresh -
+    useEffect(() => {
+      document.title = "Realtime Weather";
+    }, []);
     useEffect(() => {
       fetch(
         `https://api.weatherapi.com/v1/forecast.json?key=${API_key}&q=${city}&days=1&aqi=no&alerts=no`
@@ -33,6 +54,8 @@ export default function Home() {
           console.log("asdisjduif", e);
         });
 
+      // autoRefresh();
+
       // try {
       //   const fetchData = async () => {
       //     const response = await fetch(
@@ -46,7 +69,7 @@ export default function Home() {
       // } catch (e) {
       //   console.error("aldaa-----------------", e);
       // }
-    }, [city, statusDay, statusNight]);
+    }, [city, statusDay, statusNight, count]);
 
     const onChangeText = (event) => {
       setSearch(event.target.value);
@@ -58,6 +81,7 @@ export default function Home() {
         changeStatusNight();
       }
     };
+
     const changeStatusDay = (weatherData) => {
       console.log(weatherData?.current?.condition?.text);
       if (
@@ -117,7 +141,8 @@ export default function Home() {
     // console.log("the search:", search, "the city:", city);
     return (
       <div
-        className={`flex w-[auto] h-[1200px] justify-content-center relative ${montserrat.className}`}>
+        className={`flex w-[auto] h-[1200px] justify-content-center relative ${montserrat.className}`}
+      >
         <div className="w-[50%] h-[1200px] bg-white relative mx-auto">
           {weatherData && (
             <>
@@ -130,7 +155,9 @@ export default function Home() {
                 from="from-slate-200"
                 to="to-white"
                 textColor="text-black"
-                temp={weatherData?.forecast?.forecastday[0]?.day?.maxtemp_c}
+                temp={weatherData?.current?.temp_c}
+                feelsLike={weatherData?.current?.feelslike_c}
+                isTrue={true}
                 status={statusDay}
                 description={weatherData?.current?.condition?.text}
               />

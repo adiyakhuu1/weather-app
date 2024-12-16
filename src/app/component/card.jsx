@@ -19,10 +19,13 @@ export const Card = ({
   description,
   date,
   justify,
+  feelsLike,
+  isTrue,
 }) => {
   return (
     <div
-      className={`opacity-90 w-[414px] h-[828px] ${border} ${justify} bg-gradient-to-b ${from} ${to} justify-center ${disappear} absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl z-20`}>
+      className={`opacity-90 w-[414px] h-[828px] ${border} ${justify} bg-gradient-to-b ${from} ${to} justify-center ${disappear} absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl z-20`}
+    >
       {/* 1 */}
       <div className="flex w-[318px] space-x-28 justify-center  row-start-2 row-end-5 col-start-2 col-end-10 p-5">
         <div>
@@ -35,7 +38,8 @@ export const Card = ({
       </div>
       {/* -- */}
       <div
-        className={`text-center text-2xl row-start-6 row-end-7 col-start-3 col-end-9 ${textColor}`}>
+        className={`text-center text-2xl row-start-6 row-end-7 col-start-3 col-end-9 ${textColor}`}
+      >
         {date}
       </div>
       {/* 2 */}
@@ -44,8 +48,11 @@ export const Card = ({
       </div>
       {/* -- */}
       {/* 3 */}
-      <div className="row-start-[15] row-end-[25] col-start-2 col-end-6 p-5">
-        <div className={`${textColor} text-7xl`}>{temp} </div>
+      <div className="flex row-start-[15] row-end-[25] col-start-2 col-end-8 p-5">
+        <div className={`${textColor} text-7xl`}>{temp}</div>
+        {isTrue && (
+          <div className="font-light text-[12px]">FEELS LIKE{feelsLike}°C</div>
+        )}
       </div>
       {/* -- */}
       {/* 4 */}
