@@ -44,12 +44,11 @@ export const CityList = ({ search, setCity }) => {
   return (
     <div className="searchin">
       {filteredCities.map((city, index) => (
-        <div key={index}>
+        <div className="border-gray-500 border-2" key={index}>
           <button
             onClick={(e) => {
               setCity(city);
-            }}
-          >
+            }}>
             {city}
           </button>
         </div>

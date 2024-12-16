@@ -123,50 +123,54 @@ export default function Home() {
             <CityList search={search} setCity={setCity} />
           </div>
           {weatherData && (
-            <Card
-              date={weatherData?.current?.last_updated}
-              theCity={weatherData?.location?.name}
-              theCountry={weatherData?.location?.country}
-              color="white"
-              from="from-slate-200"
-              to="to-white"
-              textColor="text-black"
-              temp={weatherData?.forecast?.forecastday[0]?.day?.maxtemp_c}
-              status={statusDay}
-              description={weatherData?.current?.condition?.text}
-            />
+            <>
+              <Card
+                date={weatherData?.current?.last_updated}
+                theCity={weatherData?.location?.name}
+                theCountry={weatherData?.location?.country}
+                color="white"
+                from="from-slate-200"
+                to="to-white"
+                textColor="text-black"
+                temp={weatherData?.forecast?.forecastday[0]?.day?.maxtemp_c}
+                status={statusDay}
+                description={weatherData?.current?.condition?.text}
+              />
+            </>
           )}
         </div>
 
-        <div className="w-[50%] h-[1200px] bg-[#0f141e] relative">
+        <div className="w-[50%] h-[1200px] bg-[#0f141e] relative rounded-3xl">
           {weatherData && (
-            <Card
-              date={weatherData?.current?.last_updated}
-              theCity={weatherData?.location?.name}
-              theCountry={weatherData?.location?.country}
-              color="black"
-              from="from-[#1f2937]"
-              to="to-[#111827]"
-              textColor="text-white"
-              temp={weatherData?.forecast?.forecastday[0]?.day?.mintemp_c}
-              status={statusNight}
-              description={
-                weatherData?.forecast?.forecastday[0]?.hour[0]?.condition?.text
-              }
-            />
+            <>
+              <Card
+                date={weatherData?.current?.last_updated}
+                theCity={weatherData?.location?.name}
+                theCountry={weatherData?.location?.country}
+                color="black"
+                from="from-[#1f2937]"
+                to="to-[#111827]"
+                textColor="text-white"
+                temp={weatherData?.forecast?.forecastday[0]?.day?.mintemp_c}
+                status={statusNight}
+                border={`rounded-3xl`}
+                description={
+                  weatherData?.forecast?.forecastday[0]?.hour[0]?.condition
+                    ?.text
+                }
+              />
+              <WhiteCircle size="w-[1340px] h-[1340px]" />
+              <WhiteCircle size="w-[940px] h-[940px]" />
+              <WhiteCircle size="w-[340px] h-[340px]" />
+              <WhiteCircle
+                size="w-[140px] h-[140px]"
+                color="bg-white"
+                logo={true}
+              />
+            </>
           )}
         </div>
 
-        <WhiteCircle
-          size="w-[340px] h-[340px]"
-          disappear={`hidden 2xl:block`}
-        />
-        <WhiteCircle
-          size="w-[140px] h-[140px]"
-          color="bg-white"
-          logo={true}
-          disappear={`hidden 2xl:block`}
-        />
         {/* <WhiteCircle size="340px" /> */}
       </div>
     );
