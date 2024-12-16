@@ -2,6 +2,7 @@ import { SearchInput } from "./SearchInput";
 import { MdHome } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
 import { CityList } from "./citySuggestion";
 
@@ -20,7 +21,7 @@ export const Card = ({
 }) => {
   return (
     <div
-      className={`w-[414px] h-[828px] ${border} bg-gradient-to-b ${from} ${to} justify-center ${disappear} absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl z-20`}>
+      className={`opacity-95 w-[414px] h-[828px] ${border} bg-gradient-to-b ${from} ${to} justify-center ${disappear} absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl z-20`}>
       {/* 1 */}
       <div className="flex w-[318px] space-x-28 justify-center  row-start-2 row-end-5 col-start-2 col-end-10 p-5">
         <div>
@@ -51,15 +52,15 @@ export const Card = ({
         <div className={`text-orange-500 text-2xl`}>{description}</div>
       </div>
       {/* -- */}
-      <div className="flex row-start-[23] row-end-24 col-start-2 col-end-8 p-5 w-[350px] justify-center gap-10">
+      <div className="flex row-start-[23] row-end-24 col-start-2 col-end-8 p-5 w-[350px] justify-center gap-14">
         {/* <img className={`${textColor} w-8`} src="./img/home.svg" />
         <img className={`${textColor} w-8`} src="./img/localization.svg" />
         <img className={`${textColor} w-8`} src="./img/fav.svg" />
         <img className={`${textColor} w-8`} src="./img/person.svg" /> */}
-        <MdHome className="text-gray-500 text-2xl" />
+        <MdHome className="text-gray-500 text-3xl" />
         <FaLocationDot className="text-gray-500 text-2xl" />
-        <MdFavoriteBorder className="text-gray-500 text-2xl" />
-        <IoMdPerson className="text-gray-500 text-2xl" />
+        <MdFavorite className="text-gray-500 text-3xl" />
+        <IoMdPerson className="text-gray-500 text-3xl" />
       </div>
     </div>
   );
