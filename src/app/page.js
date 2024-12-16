@@ -5,8 +5,9 @@ import { SearchInput } from "./component/SearchInput";
 import { Card } from "./component/card";
 import { WhiteCircle } from "./component/WhiteCircle";
 import { CityList } from "./component/citySuggestion";
+import { Manrope, Montserrat } from "next/font/google";
 // import "./App.css";
-
+const montserrat = Montserrat({ subsets: ["latin"] });
 export default function Home() {
   const Main = () => {
     const [weatherData, setWeatherData] = useState({});
@@ -27,6 +28,9 @@ export default function Home() {
           changeStatusNight(data);
           console.log(data);
           console.log(city);
+        })
+        .catch((e) => {
+          console.log("asdisjduif", e);
         });
 
       // try {
@@ -112,16 +116,9 @@ export default function Home() {
 
     // console.log("the search:", search, "the city:", city);
     return (
-      <div className="flex w-[auto] h-[1200px] justify-content-center relative">
+      <div
+        className={`flex w-[auto] h-[1200px] justify-content-center relative ${montserrat.className}`}>
         <div className="w-[50%] h-[1200px] bg-white relative mx-auto">
-          <div className="fixed mr-[10px] mt-[20px] lg:absolute lg:top-10 lg:left-10">
-            <SearchInput
-              search={search}
-              onChangeText={onChangeText}
-              onPressEnter={onPressEnter}
-            />
-            <CityList search={search} setCity={setCity} />
-          </div>
           {weatherData && (
             <>
               <Card
@@ -139,6 +136,15 @@ export default function Home() {
               />
             </>
           )}
+          <div className="fixed mr-[10px] mt-[20px] lg:absolute lg:top-10 lg:left-10 z-30 ">
+            <SearchInput
+              search={search}
+              onChangeText={onChangeText}
+              onPressEnter={onPressEnter}
+              setCity={setCity}
+            />
+            <CityList search={search} setCity={setCity} />
+          </div>
         </div>
 
         <div className="w-[50%] h-[1200px] bg-[#0f141e] relative rounded-3xl hidden lg:block">

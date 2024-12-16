@@ -1,6 +1,13 @@
-export const SearchInput = ({ search, onChangeText, onPressEnter }) => {
+import { Fragment } from "react";
+import { CityList } from "./citySuggestion";
+export const SearchInput = ({
+  search,
+  onChangeText,
+  onPressEnter,
+  setCity,
+}) => {
   return (
-    <div className="pl-6 border-none rounded-3xl w-[567px] h-[80px] bg-slate-200 flex items-center">
+    <div className="pl-6 border-none rounded-3xl w-[567px] h-[80px] bg-slate-200 flex items-center ">
       <img src="./img/search.svg" className="w-12 h-12 " />
       <input
         placeholder="The City Name"

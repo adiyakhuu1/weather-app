@@ -22,7 +22,7 @@ export const Card = ({
 }) => {
   return (
     <div
-      className={`opacity-95 w-[414px] h-[828px] ${border} ${justify} bg-gradient-to-b ${from} ${to} justify-center ${disappear} absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl z-20`}>
+      className={`opacity-90 w-[414px] h-[828px] ${border} ${justify} bg-gradient-to-b ${from} ${to} justify-center ${disappear} absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grid grid-rows-[30] grid-cols-10 rounded-3xl shadow-2xl z-20`}>
       {/* 1 */}
       <div className="flex w-[318px] space-x-28 justify-center  row-start-2 row-end-5 col-start-2 col-end-10 p-5">
         <div>
@@ -39,7 +39,7 @@ export const Card = ({
         {date}
       </div>
       {/* 2 */}
-      <div className="row-start-9 row-end-[15] col-start-2 col-end-10">
+      <div className=" row-start-9 row-end-[15] col-start-2 col-end-10">
         <img src={`${status}`} />
       </div>
       {/* -- */}

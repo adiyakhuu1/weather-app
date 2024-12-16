@@ -32,7 +32,7 @@ export const CityList = ({ search, setCity }) => {
       const filtered = cities.filter((city) =>
         city.toLowerCase().includes(search.toLowerCase())
       );
-      setFilteredCities(filtered.slice(0, 5));
+      setFilteredCities(filtered.slice(0, 4));
     } else {
       setFilteredCities([]);
     }
@@ -42,11 +42,13 @@ export const CityList = ({ search, setCity }) => {
   // };
 
   return (
-    <div className="searchin">
+    <div className="flex-col-rev z-30 bg-white rounded-lg bg-opacity-75">
       {filteredCities.map((city, index) => (
-        <div className="border-gray-500 border-2" key={index}>
+        <div className="rounded ml-20 mb-2 w-[200px] flex" key={index}>
+          <img className="opacity-85" src={`./img/localization.svg`} />
           <button
-            onClick={(e) => {
+            className="text-black font-bold w-[200px]"
+            onClick={() => {
               setCity(city);
             }}>
             {city}
