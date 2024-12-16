@@ -113,8 +113,8 @@ export default function Home() {
     // console.log("the search:", search, "the city:", city);
     return (
       <div className="flex w-[auto] h-[1200px] justify-content-center relative">
-        <div className="w-[50%] h-[1200px] bg-white relative">
-          <div className="absolute top-10 left-10">
+        <div className="w-[50%] h-[1200px] bg-white relative mx-auto">
+          <div className="fixed mr-[10px] mt-[20px] lg:absolute lg:top-10 lg:left-10">
             <SearchInput
               search={search}
               onChangeText={onChangeText}
@@ -125,6 +125,7 @@ export default function Home() {
           {weatherData && (
             <>
               <Card
+                justify={`mx-auto`}
                 date={weatherData?.current?.last_updated}
                 theCity={weatherData?.location?.name}
                 theCountry={weatherData?.location?.country}
@@ -140,7 +141,7 @@ export default function Home() {
           )}
         </div>
 
-        <div className="w-[50%] h-[1200px] bg-[#0f141e] relative rounded-3xl">
+        <div className="w-[50%] h-[1200px] bg-[#0f141e] relative rounded-3xl hidden lg:block">
           {weatherData && (
             <>
               <Card
@@ -158,6 +159,7 @@ export default function Home() {
                   weatherData?.forecast?.forecastday[0]?.hour[0]?.condition
                     ?.text
                 }
+                // disappear={`lg:hidden]`}
               />
               <WhiteCircle size="w-[1340px] h-[1340px]" />
               <WhiteCircle size="w-[940px] h-[940px]" />
