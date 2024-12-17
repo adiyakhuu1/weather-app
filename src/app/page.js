@@ -54,7 +54,7 @@ export default function Home() {
       }, 1000);
 
       return () => clearInterval(interval);
-    }, [count, weatherData]);
+    }, [count, refresh, weatherData]);
     // counting -
     // data fetching +
     useEffect(() => {
