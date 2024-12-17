@@ -15,26 +15,48 @@ export default function Home() {
     const [city, setCity] = useState("ulaanbaatar");
     const [statusDay, setStatusDay] = useState(null);
     const [statusNight, setStatusNight] = useState(null);
-    const [count, setCount] = useState(false);
+    const [refresh, setRefresh] = useState(0);
+    const [refreshing, setRefreshing] = useState("");
+    const [count, setCount] = useState(9);
 
     const API_key = `6f9cc5eb8a37493783a72448241312`;
+
+    // auto refresh +
+    // useEffect(() => {
+    //   const interval = setInterval(() => {
+    //     setRefresh((p) => p + 1);
+    //   }, 10000);
+    //   return () => clearInterval(interval);
+    // }, [refresh, weatherData]);
+    // auto refresh -
     // counting +
     useEffect(() => {
       const interval = setInterval(() => {
+        if (count === 1) {
+          console.log("Refreshing");
+
+          // setTimeout(() => {
+          //   setRefreshing("");
+          // }, 500);
+          setCount(10);
+          setRefreshing("Updating..");
+          setRefresh((p) => p + 1);
+        } else {
+          setRefreshing(`Refreshing in ${count}s`);
+
+          setCount((p) => p - 1);
+        }
+
+        // if (count === 1) {
+        //   setCount(10);
+        // }
         console.log(count);
       }, 1000);
 
-      clearInterval(interval);
-    }, [count]);
+      return () => clearInterval(interval);
+    }, [count, weatherData]);
     // counting -
-    // auto refresh +
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setCount(!count);
-      }, 10000);
-      clearInterval(interval);
-    }, [count]);
-    // auto refresh -
+    // data fetching +
     useEffect(() => {
       document.title = "Realtime Weather";
     }, []);
@@ -47,8 +69,8 @@ export default function Home() {
           setWeatherData(data);
           changeStatusDay(data);
           changeStatusNight(data);
-          console.log(data);
-          console.log(city);
+          console.log("tatsan tsag agaar:", data);
+          console.log("odoogiin hot:", city);
         })
         .catch((e) => {
           console.log("asdisjduif", e);
@@ -69,7 +91,8 @@ export default function Home() {
       // } catch (e) {
       //   console.error("aldaa-----------------", e);
       // }
-    }, [city, statusDay, statusNight, count]);
+    }, [city, statusDay, statusNight, refresh]);
+    // data fetching -
 
     const onChangeText = (event) => {
       setSearch(event.target.value);
@@ -160,10 +183,12 @@ export default function Home() {
                 isTrue={true}
                 status={statusDay}
                 description={weatherData?.current?.condition?.text}
+                count={count}
+                refreshing={refreshing}
               />
             </>
           )}
-          <div className="fixed mr-[10px] mt-[20px] lg:absolute lg:top-10 lg:left-10 z-30 ">
+          <div className="fixed mx-auto mt-10px lg:mr-3 mt-5 lg:absolute lg:top-10 lg:left-10 z-30">
             <SearchInput
               search={search}
               onChangeText={onChangeText}
@@ -178,6 +203,7 @@ export default function Home() {
           {weatherData && (
             <>
               <Card
+                count={count}
                 date={weatherData?.current?.last_updated}
                 theCity={weatherData?.location?.name}
                 theCountry={weatherData?.location?.country}
@@ -192,6 +218,7 @@ export default function Home() {
                   weatherData?.forecast?.forecastday[0]?.hour[0]?.condition
                     ?.text
                 }
+                refreshing={refreshing}
                 // disappear={`lg:hidden]`}
               />
               <WhiteCircle size="w-[1340px] h-[1340px]" />

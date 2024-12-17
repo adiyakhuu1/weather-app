@@ -21,6 +21,8 @@ export const Card = ({
   justify,
   feelsLike,
   isTrue,
+  count,
+  refreshing,
 }) => {
   return (
     <div
@@ -38,7 +40,7 @@ export const Card = ({
       </div>
       {/* -- */}
       <div
-        className={`text-center text-2xl row-start-6 row-end-7 col-start-3 col-end-9 ${textColor}`}
+        className={`text-center text-xl row-start-6 row-end-7 col-start-3 col-end-9 ${textColor}`}
       >
         {date}
       </div>
@@ -47,6 +49,14 @@ export const Card = ({
         <img src={`${status}`} />
       </div>
       {/* -- */}
+
+      <div
+        className={`${textColor} animate-pulse text-sm row-start-[14] row-end-[15] col-start-3 col-end-8 w-[20]`}
+      >
+        {/* {count} */}
+        {refreshing}
+      </div>
+
       {/* 3 */}
       <div className="flex row-start-[15] row-end-[25] col-start-2 col-end-8 p-5">
         <div className={`${textColor} text-7xl`}>{temp}</div>
@@ -56,7 +66,7 @@ export const Card = ({
       </div>
       {/* -- */}
       {/* 4 */}
-      <div className="row-start-[22] row-end-28 col-start-2 col-end-8 p-5">
+      <div className="row-start-[22] row-end-[23] col-start-2 col-end-8 p-5">
         <div className={`text-orange-500 text-2xl`}>{description}</div>
       </div>
       {/* -- */}

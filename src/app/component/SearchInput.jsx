@@ -7,7 +7,7 @@ export const SearchInput = ({
   setCity,
 }) => {
   return (
-    <div className="pl-6 border-none rounded-3xl w-[567px] h-[80px] bg-slate-200 flex items-center ">
+    <div className="pl-6 border-none rounded-3xl w-[414px] lg:w-[567px] mx-auto h-[80px] bg-slate-200 flex items-center ">
       <img src="./img/search.svg" className="w-12 h-12 " />
       <input
         placeholder="The City Name"
